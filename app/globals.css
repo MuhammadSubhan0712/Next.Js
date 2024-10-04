@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, #000000, #1a1a82, #5e0066);
+  overflow: hidden;
+  font-family: "Arial", sans-serif;
+  perspective: 1200px;
+}
+
+/* Fiery Glowing Background */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 0, 0, 0.3) 0%,
+    transparent 70%
+  );
+  background-size: 300% 300%;
+  animation: fireGlow 8s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+/* Text with fiery glow and movement */
+.text {
+  margin-top: 4em;
+  text-align: center;
+  font-size: 4em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 800;
+  text-shadow: 2px 2px 8px rgba(255, 69, 0, 0.8), 0 0 15px rgba(255, 69, 0, 0.7),
+    0 0 25px rgba(255, 165, 0, 0.5), 0 0 35px rgba(255, 69, 0, 0.3),
+    0 0 45px rgba(255, 140, 0, 0.2);
+  transform: rotateX(15deg) rotateY(15deg) translateZ(200px);
+  animation: shake 4s infinite ease-in-out,
+    fieryGlowPulse 2s ease-in-out infinite alternate;
+}
+
+/* Keyframes for fiery background glow */
+@keyframes fireGlow {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+/* Shaking effect for text (like fire flickering) */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+}
+
+/* Pulsing fiery glow effect on text */
+@keyframes fieryGlowPulse {
+  from {
+    text-shadow: 0 0 20px rgba(224, 0, 0, 0.8), 0 0 30px rgb(255, 217, 0),
+      0 0 40px rgba(255, 69, 0, 0.4), 0 0 50px rgba(255, 140, 0, 0.2);
+  }
+  to {
+    text-shadow: 0 0 20px rgba(224, 0, 0, 0.8), 0 0 30px rgb(255, 217, 0),
+      0 0 60px rgba(255, 69, 0, 0.7), 0 0 70px rgba(255, 140, 0, 0.5);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .text {
+    font-size: 3em;
+    transform: rotateX(10deg) rotateY(10deg) translateZ(150px);
+  }
+}
+
+@media (max-width: 768px) {
+  .text {
+    font-size: 2.5em;
+    margin-top: 3em;
+    transform: rotateX(8deg) rotateY(8deg) translateZ(100px);
+  }
+}
+
+@media (max-width: 480px) {
+  .text {
+    font-size: 2em;
+    margin-top: 2em;
+    transform: rotateX(5deg) rotateY(5deg) translateZ(50px);
+  }
+
+  /* Adjust background animation for small screens */
+  .background {
+    background-size: 400% 400%;
+    animation: fireGlow 10s ease-in-out infinite alternate;
+  }
+}
